@@ -22,7 +22,7 @@ abstract class NoteDatabase : RoomDatabase() {
             return INSTANCE ?: synchronized(this){                              // "synchronized" ensures that if the INSTANCE is null,
                                                                                        // only one thread can create the database instance -> thread safety
                 // building the actual DB
-                Room.databaseBuilder(
+                val instance = Room.databaseBuilder(
                     context = context.applicationContext,
                     klass = NoteDatabase::class.java,
                     name = "notes_database"
@@ -30,6 +30,9 @@ abstract class NoteDatabase : RoomDatabase() {
                                                                                         // for TEMP tables and enables recursive triggers. Returns: A new database instance.
                                                                                         // Throws: IllegalArgumentException - if the builder was misconfigured
 
+
+                INSTANCE = instance
+                instance
 
             }
         }
