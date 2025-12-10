@@ -3,6 +3,14 @@ package com.example.hilt_room_notesapp.room
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/* 3 parts OF room implementation :
+
+                                    ENTITY
+                                    DAO
+                                    ROOM DATABASE
+
+ */
+
 
 @Entity(tableName = "notes")                              // this directs to create a table named "notes"
 data class Note(                                          // this data class holds note's data in four fields

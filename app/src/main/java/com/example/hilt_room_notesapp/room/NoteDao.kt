@@ -19,10 +19,12 @@ this interface contains the method to interact with the database, defining how y
 interface NoteDao {
 
     @Insert
-    suspend fun insert(note: Note)                                          // tells room to add a new note to the database
+    suspend fun insert(note: Note)                                          // tells room to add a new note to the database, this insertion is done in the background thread (coroutines handle it)
+                                                                            // without blocking main thread
 
     @Query("SELECT * FROM notes ORDER BY timestamp DESC")
-    fun getAllNotes(): Flow<List<Note>>                                       // fetching 
+    fun getAllNotes(): Flow<List<Note>>                                       // fetching all notes from notes table,
+                                                                                // this function will return a flow of list of notes in real time
 
 }
 
