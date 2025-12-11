@@ -11,12 +11,15 @@ import javax.inject.Singleton
 
 
 /*
-
                    Hilt Module is class where you define how build and provide dependencies ( objects like Room, Dao,Repositories, Retrofit, etc), annotated with "@Module".
 
                    @Module : annotate to register it as a Hilt component provider. Functions inside this AppModule are annotated with "@Provides" to tell hilt how to create instances.
-
 */
+
+// this module contains all the functions that provide the dependencies "NoteDatabase" & "NoteDao",
+//  @Singleton says to make one instance of "NoteDatabase" & one of "NoteDao"
+
+
 
 
 
@@ -34,8 +37,20 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun ProvideNoteDao(noteDatabase: NoteDatabase) = noteDatabase.noteDao()
+    fun provideNoteDao(noteDatabase: NoteDatabase) = noteDatabase.noteDao()
 
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
