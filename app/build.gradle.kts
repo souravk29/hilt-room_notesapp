@@ -63,7 +63,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     // adding ksp
-    implementation(libs.dagger.hilt.android)
+    implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
     ksp(libs.hilt.android.compiler)
 

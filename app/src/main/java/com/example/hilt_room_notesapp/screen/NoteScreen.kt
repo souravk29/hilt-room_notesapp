@@ -5,9 +5,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -33,9 +35,9 @@ fun NoteScreen( viewModel: NoteViewModel = hiltViewModel() ){
     var content by remember{ mutableStateOf("") }
 
 
-    Column ( modifier = Modifier.padding(16.dp) ){
+    Column ( modifier = Modifier.padding(16.dp).systemBarsPadding() ){
 
-        TextField(
+        OutlinedTextField(
             value = title,
             onValueChange = {title = it},
             label = {Text(text = "Title")},
@@ -44,10 +46,10 @@ fun NoteScreen( viewModel: NoteViewModel = hiltViewModel() ){
 
         Spacer( modifier = Modifier.height(8.dp) )
 
-        TextField(
+        OutlinedTextField(
             value = content,
             onValueChange = {content = it},
-            label = {Text(text = "Label")},
+            label = {Text(text = "Content")},
             modifier = Modifier.fillMaxWidth()
         )
 
@@ -55,28 +57,27 @@ fun NoteScreen( viewModel: NoteViewModel = hiltViewModel() ){
 
         Button(
             onClick = {
-                viewModel.insert( Note(0, title, content, System.currentTimeMillis() ))                                     // calls insert function inside the viewmodel
+                viewModel.insert( Note(0, title, content, System.currentTimeMillis()))                                     // calls insert function inside the viewmodel
                             title = ""
                             content = ""
                       },
+
             modifier = Modifier.fillMaxWidth()
 
         ) {
 
             Text(text = "Add Note")
 
-            Spacer(modifier = Modifier.height(16.dp))
+        }
 
-            // display all notes in DB
-            LazyColumn {
-                items(notes){ note ->
-                    NoteItem(note)
+        Spacer(modifier = Modifier.height(16.dp))
 
-                }
+        // display all notes in DB
+        LazyColumn {
+            items(notes){ note ->                                                       // "notes" is the list of nodes that you have collected from the viewmodel
+                NoteItem(note)                                                                  // this items function iterates over the list, composes a child layout for
+                // each note we have a NoteItem composable we created before
             }
-
-
-
         }
 
 
