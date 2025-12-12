@@ -1,5 +1,7 @@
 # Hilt + Room Notes App
 
+Using dependency injection with third party library (ROOM DATABASE)
+
 <img src="app_screenshot.png" width="300" />
 
 A simple Notes application built with modern Android development practices. This project demonstrates clean architecture with dependency injection, local persistence, and reactive UI updates.
